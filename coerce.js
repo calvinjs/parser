@@ -37,10 +37,10 @@ const coerceValue = (val) => {
 }
 
 const coerceParams = (obj, q, map) => {
-  Object.keys(querystring.parse(q)).forEach(name => {
-    const format = map[name];
+  Object.keys(querystring.parse(q)).forEach(param => {
+    const format = map[param];
     if (format) {
-      dotProp.set(obj, name, format(dotProp.get(obj, name)));
+      dotProp.set(obj, param, format(dotProp.get(obj, param)));
     }
   });
   return obj;
@@ -52,6 +52,5 @@ const coerce = (obj, opts, q) => {
     ? coerceParams(nobj, q, opts.coerceMap)
     : nobj;
 }
-
 
 exports.coerce = coerce;
